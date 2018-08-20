@@ -11,7 +11,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        
+
+        <module>gputil</module>
+
         <module>spring-boot-mybatis-mutil-datasource</module>
         <module>spring-boot-restful</module>
         <module>spring-boot-dubbo-service</module>
