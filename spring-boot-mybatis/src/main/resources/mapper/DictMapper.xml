@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.dao.DictDao">
+    <resultMap id="BaseResultMap" type="com.example.bean.DictBean">
+        <result column="id" property="id" />
+        <result column="type" property="type" />
+        <result column="key" property="key" />
+        <result column="value" property="value" />
+        <result column="content" property="content" />
+    </resultMap>
+
+    <select id="queryById" resultMap="BaseResultMap" parameterType="int" >
+        select
+        id,`type`,`key`,`value`,`content`
+        from t_dict
+        where id = #{id}
+    </select>
+
+</mapper>
