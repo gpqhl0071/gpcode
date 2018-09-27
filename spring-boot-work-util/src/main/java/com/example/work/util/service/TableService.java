@@ -19,7 +19,7 @@ public class TableService {
   @Autowired
   private TableDao tableDao;
 
-  public void getTableInfo(String tableName) {
+  public void generatorJDBCMapper(String tableName) {
     StringBuffer mapSB = new StringBuffer();
 
     List<Map<String, Object>> list = tableDao.getTableInfo(tableName);

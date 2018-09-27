@@ -38,7 +38,7 @@ public class TableServiceTest {
   @Test
   public void testGetTableInfo() throws Exception {
 
-    tableService.getTableInfo("t_agent_reward_punish_month");
+    tableService.generatorJDBCMapper("t_agent_reward_punish_month");
   }
 
 
