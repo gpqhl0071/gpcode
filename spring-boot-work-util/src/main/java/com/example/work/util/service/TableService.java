@@ -19,6 +19,14 @@ public class TableService {
   @Autowired
   private TableDao tableDao;
 
+  /**
+   * 生成JDBCTemplate mapper方法
+   *
+   * @return void
+   * @param: [tableName]
+   * @author gao peng
+   * @date 2018/9/27 17:50
+   */
   public void generatorJDBCMapper(String tableName) {
     StringBuffer mapSB = new StringBuffer();
 
