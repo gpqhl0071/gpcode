@@ -19,6 +19,7 @@
         <module>spring-boot-dubbo-service</module>
         <module>spring-boot-dubbo-client</module>
         <module>spring-boot-mybatis</module>
+        <module>spring-boot-work-util</module>
 
     </modules>
 </project>
