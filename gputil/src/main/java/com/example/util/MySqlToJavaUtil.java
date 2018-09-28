@@ -20,7 +20,7 @@ public class MySqlToJavaUtil {
       tableType = "Int";
     } else if (dataType.equals("varchar")) {
       tableType = "String";
-    } else if (dataType.equals("datetime")) {
+    } else if (dataType.equals("datetime") || dataType.equals("date")) {
       tableType = "Timestamp";
     } else {
       System.out.println("类型未匹配到，请注意...");

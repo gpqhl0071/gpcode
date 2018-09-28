@@ -15,9 +15,7 @@ import java.util.Map;
  * @date 2018/9/27 14:38
  */
 @Service
-public class TableService {
-  @Autowired
-  private TableDao tableDao;
+public class TableService extends BaseService {
 
   /**
    * 生成JDBCTemplate mapper方法
@@ -30,28 +28,28 @@ public class TableService {
   public void generatorJDBCMapper(String tableName) {
     StringBuffer mapSB = new StringBuffer();
 
-    List<Map<String, Object>> list = tableDao.getTableInfo(tableName);
+    List<Map<String, Object>> list = getColoumByTableName(tableName);
 
     String mapperName = MySqlToJavaUtil.tranMySQLTableToJavaBean(tableName);
 
     mapSB.append("private class " + mapperName + "RowMapper implements RowMapper<" + mapperName + "Bean> {");
     StringUtil.enter(mapSB);
 
-    StringUtil.splace(mapSB, 2);
+    StringUtil.splace(mapSB, spaceInitNum);
     mapSB.append("@Override");
     StringUtil.enter(mapSB);
 
-    StringUtil.splace(mapSB, 2);
+    StringUtil.splace(mapSB, spaceInitNum);
     mapSB.append("public " + mapperName + "Bean mapRow(ResultSet rs, int arg1) throws SQLException {");
     StringUtil.enter(mapSB);
 
-    StringUtil.splace(mapSB, 4);
+    StringUtil.splace(mapSB, spaceInitNum + 2);
     mapSB.append("private class " + mapperName + "RowMapper implements RowMapper<" + mapperName + "Bean> {");
     StringUtil.enter(mapSB);
 
     for (Map map : list) {
 
-      StringUtil.splace(mapSB, 6);
+      StringUtil.splace(mapSB, spaceInitNum + 4);
 
       String bean = genBeanName(map);
 
@@ -59,11 +57,11 @@ public class TableService {
       StringUtil.enter(mapSB);
     }
 
-    StringUtil.splace(mapSB, 6);
+    StringUtil.splace(mapSB, spaceInitNum + 4);
     mapSB.append("return bean;");
 
     StringUtil.enter(mapSB);
-    StringUtil.splace(mapSB, 4);
+    StringUtil.splace(mapSB, spaceInitNum + 2);
     mapSB.append("}");
 
     StringUtil.enter(mapSB);
@@ -77,15 +75,12 @@ public class TableService {
     String columnName = (String) map.get("COLUMN_NAME");
     String dataType = (String) map.get("DATA_TYPE");
 
-    String tableType = MySqlToJavaUtil.tranMysqlTOJavaType(dataType);
+    String fieldType = getJavaFieldTytpe(dataType);
+    String fileName = getJavaFieldName(columnName);
 
-    String param1 = "rs.get" + tableType + "(\"" + columnName + "\")";
+    String param1 = "rs.get" + fieldType + "(\"" + columnName + "\")";
 
-    String humpColumnName = HumpUtil.underlineToHump(columnName);
-
-    humpColumnName = StringUtil.upperFirstLetter(humpColumnName);
-
-    return "bean.set" + humpColumnName + "(" + param1 + ");";
+    return "bean.set" + fileName + "(" + param1 + ");";
   }
 
 
