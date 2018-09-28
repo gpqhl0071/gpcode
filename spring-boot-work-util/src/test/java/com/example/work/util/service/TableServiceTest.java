@@ -41,5 +41,11 @@ public class TableServiceTest {
     tableService.generatorJDBCMapper("t_agent_reward_punish_month");
   }
 
+  @Test
+  public void testGeneratorJDBCTemplate() throws Exception {
+
+    String str = tableService.generatorJDBCTemplate("t_agent_reward_punish_month");
+    System.out.println(str);
+  }
 
 } 

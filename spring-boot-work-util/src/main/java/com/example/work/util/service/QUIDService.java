@@ -25,59 +25,64 @@ public class QUIDService extends BaseService {
    * @author gao peng
    * @date 2018/9/28 14:05
    */
-  public void generatorInsert(String tableName) {
+  public String generatorInsert(String tableName) {
 
     StringBuffer sb = new StringBuffer();
+    writeLine(sb, "");
 
     List<Map<String, Object>> list = getColoumByTableName(tableName);
 
     String mapperName = MySqlToJavaUtil.tranMySQLTableToJavaBean(tableName);
 
+
+    StringUtil.splace(sb, spaceInitNum);
     writeLine(sb, "public " + mapperName + "Bean save(final " + mapperName + "Bean bean) {");
 
-    StringUtil.splace(sb, spaceInitNum);
+    StringUtil.splace(sb, spaceInitNum + 2);
     writeLine(sb, "KeyHolder keyHolder = new GeneratedKeyHolder();");
-    StringUtil.splace(sb, spaceInitNum);
+    StringUtil.splace(sb, spaceInitNum + 2);
     writeLine(sb, "jt.update(new PreparedStatementCreator() {");
 
-    StringUtil.splace(sb, spaceInitNum + 2);
+    StringUtil.splace(sb, spaceInitNum + 4);
     writeLine(sb, "@Override");
 
-    StringUtil.splace(sb, spaceInitNum + 2);
+    StringUtil.splace(sb, spaceInitNum + 4);
     writeLine(sb, "public PreparedStatement createPreparedStatement(java.sql.Connection paramConnection) throws SQLException {");
 
-    StringUtil.splace(sb, spaceInitNum + 6);
+    StringUtil.splace(sb, spaceInitNum + 8);
     insertSQL(tableName, sb, list);
 
-    StringUtil.splace(sb, spaceInitNum + 6);
+    StringUtil.splace(sb, spaceInitNum + 8);
     writeLine(sb, "PreparedStatement ps = paramConnection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);");
 
-    StringUtil.splace(sb, spaceInitNum + 6);
+    StringUtil.splace(sb, spaceInitNum + 8);
     writeLine(sb, "int index = 1;");
 
     for (Map map : list) {
-      StringUtil.splace(sb, spaceInitNum + 6);
+      StringUtil.splace(sb, spaceInitNum + 8);
 
       getBeanName(sb, map, "bean");
     }
 
-    StringUtil.splace(sb, spaceInitNum + 6);
+    StringUtil.splace(sb, spaceInitNum + 8);
     writeLine(sb, "return ps;");
 
-    StringUtil.splace(sb, spaceInitNum + 4);
+    StringUtil.splace(sb, spaceInitNum + 6);
     writeLine(sb, "}");
 
-    StringUtil.splace(sb, spaceInitNum + 2);
+    StringUtil.splace(sb, spaceInitNum + 4);
     writeLine(sb, "}, keyHolder);");
 
-    StringUtil.splace(sb, spaceInitNum);
+    StringUtil.splace(sb, spaceInitNum + 2);
     writeLine(sb, "bean.setId(keyHolder.getKey().intValue());");
 
-    StringUtil.splace(sb, spaceInitNum);
+    StringUtil.splace(sb, spaceInitNum + 2);
     writeLine(sb, "return bean;");
+
+    StringUtil.splace(sb, spaceInitNum);
     writeLine(sb, "}");
 
-    System.out.println(sb.toString());
+    return sb.toString();
   }
 
   /**
@@ -88,9 +93,10 @@ public class QUIDService extends BaseService {
    * @author gao peng
    * @date 2018/9/28 14:06
    */
-  public void generatorBatchInsert(String tableName) {
+  public String generatorBatchInsert(String tableName) {
 
     StringBuffer sb = new StringBuffer();
+    writeLine(sb, "");
 
     List<Map<String, Object>> list = getColoumByTableName(tableName);
 
@@ -136,12 +142,13 @@ public class QUIDService extends BaseService {
     StringUtil.splace(sb, spaceInitNum);
     writeLine(sb, "}");
 
-    System.out.println(sb.toString());
+    return sb.toString();
   }
 
-  public void generatorQueryById(String tableName) {
+  public String generatorQueryById(String tableName) {
 
     StringBuffer sb = new StringBuffer();
+    writeLine(sb, "");
 
     List<Map<String, Object>> list = getColoumByTableName(tableName);
 
@@ -160,12 +167,13 @@ public class QUIDService extends BaseService {
     StringUtil.splace(sb, spaceInitNum);
     writeLine(sb, "}");
 
-    System.out.println(sb.toString());
+    return sb.toString();
   }
 
-  public void generatorQueryPage(String tableName) {
+  public String generatorQueryPage(String tableName) {
 
     StringBuffer sb = new StringBuffer();
+    writeLine(sb, "");
 
     List<Map<String, Object>> list = getColoumByTableName(tableName);
 
@@ -186,7 +194,7 @@ public class QUIDService extends BaseService {
     StringUtil.splace(sb, spaceInitNum);
     writeLine(sb, "}");
 
-    System.out.println(sb.toString());
+    return sb.toString();
   }
 
   private void getBeanName(StringBuffer sb, Map map, String param1) {

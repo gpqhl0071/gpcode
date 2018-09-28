@@ -16,6 +16,19 @@ import java.util.Map;
  */
 @Service
 public class TableService extends BaseService {
+  @Autowired
+  private QUIDService quidService;
+
+  public String generatorJDBCTemplate(String tableName) {
+    StringBuffer sb = new StringBuffer();
+    sb.append(generatorJDBCMapper(tableName));
+    sb.append(quidService.generatorBatchInsert(tableName));
+    sb.append(quidService.generatorInsert(tableName));
+    sb.append(quidService.generatorQueryById(tableName));
+    sb.append(quidService.generatorQueryPage(tableName));
+
+    return sb.toString();
+  }
 
   /**
    * 生成JDBCTemplate mapper方法
@@ -25,13 +38,15 @@ public class TableService extends BaseService {
    * @author gao peng
    * @date 2018/9/27 17:50
    */
-  public void generatorJDBCMapper(String tableName) {
+  public String generatorJDBCMapper(String tableName) {
     StringBuffer mapSB = new StringBuffer();
+    StringUtil.enter(mapSB);
 
     List<Map<String, Object>> list = getColoumByTableName(tableName);
 
     String mapperName = MySqlToJavaUtil.tranMySQLTableToJavaBean(tableName);
 
+    StringUtil.splace(mapSB, spaceInitNum);
     mapSB.append("private class " + mapperName + "RowMapper implements RowMapper<" + mapperName + "Bean> {");
     StringUtil.enter(mapSB);
 
@@ -65,9 +80,10 @@ public class TableService extends BaseService {
     mapSB.append("}");
 
     StringUtil.enter(mapSB);
+    StringUtil.splace(mapSB, spaceInitNum);
     mapSB.append("}");
 
-    System.out.println(mapSB.toString());
+    return mapSB.toString();
   }
 
 
