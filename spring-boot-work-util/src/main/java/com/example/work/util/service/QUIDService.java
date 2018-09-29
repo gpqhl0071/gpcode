@@ -103,7 +103,7 @@ public class QUIDService extends BaseService {
     String mapperName = MySqlToJavaUtil.tranMySQLTableToJavaBean(tableName);
 
     StringUtil.splace(sb, spaceInitNum);
-    writeLine(sb, "public void batchSave(final List<AgentBean> list) {");
+    writeLine(sb, "public void batchSave(final List<" + mapperName + "Bean> list) {");
 
     StringUtil.splace(sb, spaceInitNum + 2);
     insertSQL(tableName, sb, list);
@@ -127,7 +127,7 @@ public class QUIDService extends BaseService {
       getBeanName(sb, map, "list.get(i)");
     }
     StringUtil.splace(sb, spaceInitNum + 4);
-    writeLine(sb, "};");
+    writeLine(sb, "}");
 
     StringUtil.splace(sb, spaceInitNum + 4);
     writeLine(sb, "public int getBatchSize() {");
@@ -161,7 +161,7 @@ public class QUIDService extends BaseService {
     writeLine(sb, "String sql = \"select * from " + tableName + "\";");
 
     StringUtil.splace(sb, spaceInitNum + 2);
-    writeLine(sb, "return jt.queryForObject(sql, new Object[]{id}, new " + beanName + "Mapper());");
+    writeLine(sb, "return jt.queryForObject(sql, new Object[]{id}, new " + beanName + "RowMapper());");
 
 
     StringUtil.splace(sb, spaceInitNum);
@@ -189,7 +189,7 @@ public class QUIDService extends BaseService {
     writeLine(sb, "List<Object> paramList = new ArrayList<Object>();");
 
     StringUtil.splace(sb, spaceInitNum + 2);
-    writeLine(sb, "return this.queryForPage(sqlBuilder.toString(), paramList.toArray(), pageNo, pageSize);");
+    writeLine(sb, "return this.queryForPage(sql.toString(), paramList.toArray(), pageNo, pageSize);");
 
     StringUtil.splace(sb, spaceInitNum);
     writeLine(sb, "}");

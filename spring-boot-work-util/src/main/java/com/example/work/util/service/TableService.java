@@ -58,8 +58,8 @@ public class TableService extends BaseService {
     mapSB.append("public " + mapperName + "Bean mapRow(ResultSet rs, int arg1) throws SQLException {");
     StringUtil.enter(mapSB);
 
-    StringUtil.splace(mapSB, spaceInitNum + 2);
-    mapSB.append("private class " + mapperName + "RowMapper implements RowMapper<" + mapperName + "Bean> {");
+    StringUtil.splace(mapSB, spaceInitNum);
+    mapSB.append(mapperName + "Bean bean = new " + mapperName + "Bean();");
     StringUtil.enter(mapSB);
 
     for (Map map : list) {
