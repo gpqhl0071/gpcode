@@ -46,6 +46,20 @@ public class BaseService {
   }
 
   /**
+   * 数据库字段命名规则修改为JAVA驼峰格式（首字母小写）
+   *
+   * @return java.lang.String
+   * @param: [columnName]
+   * @author gao peng
+   * @date 2018/9/30 11:12
+   */
+  public String getJavaFieldNameFirstLower(String columnName) {
+    String humpColumnName = HumpUtil.underlineToHump(columnName);
+
+    return humpColumnName;
+  }
+
+  /**
    * 转换成JAVA的类型，调用工具工具方法
    *
    * @return java.lang.String

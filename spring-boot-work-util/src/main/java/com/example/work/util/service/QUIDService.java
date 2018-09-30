@@ -158,7 +158,7 @@ public class QUIDService extends BaseService {
     writeLine(sb, "public " + beanName + "Bean queryById(int id) {");
 
     StringUtil.splace(sb, spaceInitNum + 2);
-    writeLine(sb, "String sql = \"select * from " + tableName + "\";");
+    writeLine(sb, "String sql = \"select * from " + tableName + " where id = ? \";");
 
     StringUtil.splace(sb, spaceInitNum + 2);
     writeLine(sb, "return jt.queryForObject(sql, new Object[]{id}, new " + beanName + "RowMapper());");
