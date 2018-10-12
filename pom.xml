@@ -21,6 +21,7 @@
         <module>spring-boot-mybatis</module>
         <module>spring-boot-work-util</module>
         <module>springQuartzExample</module>
+        <module>java-dynamic-proxy</module>
 
     </modules>
 </project>
