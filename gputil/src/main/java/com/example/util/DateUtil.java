@@ -958,10 +958,16 @@ public class DateUtil {
   }
 
   public static void main(String[] args) {
-    Calendar cale = Calendar.getInstance();
-    int month = cale.get(Calendar.MONTH) + 1;
-    System.out.println(month);
+    System.out.println(DateUtil.Date2String(new Date()));
 
-    System.out.println(addMonth(new Date(), -3));
+    System.out.println(DateUtil.Date2String(DateUtil.addDate(new Date(), Calendar.DATE, -30, DateUtil
+      .timeZoneBeijing)));
   }
 }
+
+
+
+
+
+
+
