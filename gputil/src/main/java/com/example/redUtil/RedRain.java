@@ -1,11 +1,9 @@
-package com.example;
+package com.example.redUtil;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author gao peng
@@ -18,10 +16,20 @@ public class RedRain {
     r.init();
 
     int i = 0;
-    while (i < 100) {
+    Date d1 = new Date();
+    while (i < 1000) {
       i++;
-      getRandomN();
+      Thread t = new Thread() {
+        @Override
+        public void run() {
+          getRandomN();
+        }
+      };
+      t.start();
     }
+    Date d2 = new Date();
+
+    System.out.println("耗时:" + (d2.getTime() - d1.getTime()) + "ms");
   }
 
   private static synchronized void getRandomN() {
@@ -32,16 +40,17 @@ public class RedRain {
       if (entry.getKey() != 10 && entry.getValue() == 0) {
         // 移除没有红包的项目
         Red.redMap.remove(entry.getKey());
+        continue;
       }
       list.add(entry.getKey());
-      int n = core((Integer[]) list.toArray());
-
-      System.out.println("随机获取数字：" + n);
     }
+    int n = core(list.toArray());
+    Red.redMap.put(n, Red.redMap.get(n) - 1);
+    System.out.println("随机获取数字：" + n);
   }
 
-  private static int core(Integer[] arr) {
+  private static int core(Object[] arr) {
     int index = (int) (Math.random() * arr.length);
-    return arr[index];
+    return Integer.parseInt(String.valueOf(arr[index]));
   }
 }
