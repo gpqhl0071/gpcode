@@ -1,0 +1,10 @@
+host = fastsmtp.qiye.163.com
+port = 994
+user = 1001@1001.co
+from = 1001@1001.co
+pass =
+startttlsEnable = true
+sslEnable = true
+socketFactoryClass = javax.net.ssl.SSLSocketFactory
+socketFactoryFallback = true
+socketFactoryPort = 994
