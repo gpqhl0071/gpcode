@@ -12,20 +12,21 @@ import java.util.Date;
  */
 public class DateU {
   public static void main(String[] args) {
-    String str1 = DateUtil.format(new Date(), "yyyy-MM-dd 20:00:00");
+    String str1 = DateUtil.format(new Date(), "yyyy-MM-dd 23:00:00");
     String str2 = DateUtil.format(new Date(), "yyyy-MM-dd 10:00:00");
     DateTime d1 = DateUtil.parseDateTime(str1);
     DateTime d2 = DateUtil.parseDateTime(str2);
 
-    Date d = new Date();
-    d.getTime();
-
-
-    System.out.println(((d1.getTime() - d.getTime()) / 1000) + "s");
-
     DateTime dt = new DateTime();
-    System.out.println(dt.between(d1.toJdkDate(), DateUnit.SECOND));
-    System.out.println(dt.between(d2.toJdkDate(), DateUnit.SECOND));
-    System.out.println(d1.compareTo(d2));
+
+    if (DateUtil.date().compareTo(d1) <= 0) {
+      System.out.println("当前时间 d1");
+      System.out.println(dt.between(d1.toJdkDate(), DateUnit.SECOND));
+    }
+
+    if (DateUtil.date().compareTo(d2) <= 0) {
+      System.out.println("当前时间 d2");
+      System.out.println(dt.between(d2.toJdkDate(), DateUnit.SECOND));
+    }
   }
 }
