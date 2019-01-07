@@ -36,7 +36,7 @@ public class GeneratorBeanServiceTest {
    */
   @Test
   public void testHandle() throws Exception {
-    System.out.println(generatorBeanService.handle("t_agent_commission_stage_zt"));
+    System.out.println(generatorBeanService.handle("t_user_red_rain"));
   }
 
 

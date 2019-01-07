@@ -3,6 +3,7 @@ package com.example.redUtil;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
+import sun.util.calendar.LocalGregorianCalendar;
 
 import java.util.Date;
 
@@ -28,5 +29,14 @@ public class DateU {
       System.out.println("当前时间 d2");
       System.out.println(dt.between(d2.toJdkDate(), DateUnit.SECOND));
     }
+
+    DateTime d = DateUtil.offsetMinute(DateUtil.date(), -5);
+
+    System.out.println(DateUtil.format(d, "yyyy-MM-dd HH:mm:ss"));
+
+
+    String s1 = DateUtil.format(new Date(), "yyyy-MM-dd 23:59:59");
+    DateTime ss1 = DateUtil.parseDateTime(s1);
+    System.out.println(DateUtil.offsetMonth(ss1.toJdkDate(), 1));
   }
 }
