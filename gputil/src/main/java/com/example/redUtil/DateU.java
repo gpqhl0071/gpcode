@@ -1,5 +1,6 @@
 package com.example.redUtil;
 
+import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
@@ -13,14 +14,16 @@ import java.util.Date;
  */
 public class DateU {
   public static void main(String[] args) {
-    String str1 = DateUtil.format(new Date(), "yyyy-MM-dd 23:00:00");
-    String str2 = DateUtil.format(new Date(), "yyyy-MM-dd 10:00:00");
-    DateTime d1 = DateUtil.parseDateTime(str1);
-    DateTime d2 = DateUtil.parseDateTime(str2);
+    String str1 = DateUtil.format(new Date(), DatePattern.NORM_DATE_PATTERN);
+    String str2 = "2019-01-21";
+
+    DateTime d1 = DateUtil.parseDate(str1);
+    DateTime d2 = DateUtil.parseDate(str2);
 
     DateTime dt = new DateTime();
+    System.out.println(d1.compareTo(d2));
 
-    if (DateUtil.date().compareTo(d1) <= 0) {
+    if (d1.compareTo(d2) <= 0) {
       System.out.println("当前时间 d1");
       System.out.println(dt.between(d1.toJdkDate(), DateUnit.SECOND));
     }

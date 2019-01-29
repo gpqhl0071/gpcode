@@ -30,6 +30,7 @@ public class RedRain {
     Date d2 = new Date();
 
     System.out.println("耗时:" + (d2.getTime() - d1.getTime()) + "ms");
+
   }
 
   private static synchronized void getRandomN() {
@@ -50,7 +51,32 @@ public class RedRain {
   }
 
   private static int core(Object[] arr) {
+
+    Object[] jl = new Object[] {1, 2, 3};
+
+    int n = (int) (Math.random() * jl.length);
+
+    boolean flag = false;
+    for (Object o : arr) {
+      if (Integer.parseInt(String.valueOf(o)) == 10) {
+        flag = true;
+        break;
+      }
+    }
+
+    if (flag && n == 1) {
+      return coreNew(arr);
+    } else if (!flag) {
+      return coreNew(arr);
+    } else {
+      return 10;
+    }
+
+  }
+
+  private static int coreNew(Object[] arr) {
     int index = (int) (Math.random() * arr.length);
     return Integer.parseInt(String.valueOf(arr[index]));
   }
+
 }

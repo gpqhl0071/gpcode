@@ -1,12 +1,20 @@
 package com.example.util;
 
+import cn.hutool.core.util.CharsetUtil;
+import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.SecureUtil;
+import cn.hutool.crypto.symmetric.SymmetricAlgorithm;
+import cn.hutool.crypto.symmetric.SymmetricCrypto;
+
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -65,7 +73,19 @@ public class AESUtil {
   }
 
   public static void main(String[] args) throws Exception {
-    String key = "1234567891234567";
-    System.out.println(aesEncryptString("123444", key));
+    String content = "test中文";
+
+    //随机生成密钥
+    SecretKey key = SecureUtil.generateKey(SymmetricAlgorithm.AES.getValue());
+
+    //构建
+    SymmetricCrypto aes = new SymmetricCrypto(SymmetricAlgorithm.AES, key);
+
+    //加密为16进制表示
+    String encryptHex = aes.encryptHex(content);
+    System.out.println(encryptHex);
+    //解密为字符串
+    String decryptStr = aes.decryptStr(encryptHex, CharsetUtil.CHARSET_UTF_8);
+    System.out.println(decryptStr);
   }
 }
