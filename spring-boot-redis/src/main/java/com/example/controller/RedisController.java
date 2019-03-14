@@ -42,5 +42,11 @@ public class RedisController {
     response.getOutputStream().write(json.getBytes());
   }
 
+  @RequestMapping(value = "/getFanpai/", method = RequestMethod.GET)
+  public void getFanpai(HttpServletResponse response) throws Exception {
+    redisService.fanpai();
+    response.getOutputStream().write("success".getBytes());
+  }
+
 
 }
