@@ -33,8 +33,6 @@ public class ApsLoginController {
     jsonMap.put("clientVersionCode", 16);
     jsonMap.put("clientModel", "HM NOTE 1LTE");
     jsonMap.put("clientPlatform", 2);
-//    jsonMap.put("userName", phone);
-//    jsonMap.put("password", password);
 
     Enumeration enumeration = request.getParameterNames();
     Map<String, Object> modelMap = new HashMap<>();
@@ -50,7 +48,6 @@ public class ApsLoginController {
     String url = request.getParameter("url");
 
     String result = HttpUtil.post("https://testaps.1001.co" + url + RandomUtil.randomNumbers(10), map);
-//    String result = HttpUtil.post("https://testaps.1001.co/user/login/" + RandomUtil.randomNumbers(10), map);
 
     result = decrypt(result, "SCpqJmtEdSZNNjd4I2Ukcg==");
 
