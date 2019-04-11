@@ -1,12 +1,10 @@
-package com.example.controller;
+package com.example.demo.controller;
 
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
 import org.apache.commons.codec.binary.Base64;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.crypto.Cipher;
@@ -17,7 +15,6 @@ import java.security.Key;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 @SuppressWarnings("all")
 @RestController()
