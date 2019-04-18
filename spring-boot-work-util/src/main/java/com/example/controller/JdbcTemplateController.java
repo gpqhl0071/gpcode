@@ -1,5 +1,6 @@
 package com.example.controller;
 
+import com.example.work.util.service.GeneratorBeanService;
 import com.example.work.util.service.TableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +19,21 @@ import javax.servlet.http.HttpServletResponse;
 public class JdbcTemplateController {
   @Autowired
   private TableService tableService;
+  @Autowired
+  private GeneratorBeanService generatorBeanService;
 
   @RequestMapping(value = "/generator/{tableName}", method = RequestMethod.GET)
   public void generator(@PathVariable("tableName") String tableName, HttpServletResponse response) throws Exception {
     String result = tableService.generatorJDBCTemplate(tableName);
+
+    System.out.println(result);
+
+    response.getOutputStream().write(result.getBytes());
+  }
+
+  @RequestMapping(value = "/bean/{tableName}", method = RequestMethod.GET)
+  public void bean(@PathVariable("tableName") String tableName, HttpServletResponse response) throws Exception {
+    String result = generatorBeanService.handle(tableName);
 
     System.out.println(result);
 

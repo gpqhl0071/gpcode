@@ -20,7 +20,7 @@ public class Http {
     String host = "https://ali-waihui.showapi.com";
     String path = "/waihui-transform";
     String method = "GET";
-    String appcode = "";
+    String appcode = "c143d5cbfb6649c99feddd9807d3540e";
     Map<String, String> headers = new HashMap<String, String>();
     headers.put("Authorization", "APPCODE " + appcode);
     Map<String, Object> querys = new HashMap<String, Object>();
@@ -44,4 +44,14 @@ public class Http {
       e.printStackTrace();
     }
   }
+
+
+
+
+
+
+
+
+
+
 }
