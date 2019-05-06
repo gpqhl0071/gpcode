@@ -16,6 +16,7 @@ public class ExecutorserviceDemo4 {
   public static void main(String[] args) {
     ScheduledExecutorService scheduledExecutor = Executors.newScheduledThreadPool(2);
     // Callable implementation
+    // lambda 表达式用法，仅限用于jdk8 以上
     Callable<String> c = () -> {
       System.out.println("Executed at- " + new Date());
       return "Executing task";
