@@ -22,7 +22,7 @@ public class BaseService {
   /**
    * 根据表明，读取表结构信息
    *
-   * @return java.util.List<java.util.Map<java.lang.String,java.lang.Object>>
+   * @return java.apsTemplate.List<java.apsTemplate.Map<java.lang.String,java.lang.Object>>
    * @param: [tableName]
    * @author gao peng
    * @date 2018/9/28 14:01

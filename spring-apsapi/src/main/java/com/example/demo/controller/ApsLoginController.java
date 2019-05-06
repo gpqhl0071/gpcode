@@ -47,7 +47,7 @@ public class ApsLoginController {
 
     String url = request.getParameter("url");
 
-    String result = HttpUtil.post("https://testaps.1001.co" + url + RandomUtil.randomNumbers(10), map);
+    String result = HttpUtil.post("http://192.168.9.10:8081" + url + RandomUtil.randomNumbers(10), map);
 
     result = decrypt(result, "SCpqJmtEdSZNNjd4I2Ukcg==");
 

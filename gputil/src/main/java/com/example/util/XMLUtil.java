@@ -18,7 +18,7 @@ public class XMLUtil {
   /**
    * DOM4J方式将XML转储成MAP
    *
-   * @return java.util.Map
+   * @return java.apsTemplate.Map
    * @param: [xml]
    * @author gao peng
    * @date 2018/10/24 10:03
