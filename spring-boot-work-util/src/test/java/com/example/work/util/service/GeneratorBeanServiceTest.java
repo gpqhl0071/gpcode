@@ -36,7 +36,7 @@ public class GeneratorBeanServiceTest {
    */
   @Test
   public void testHandle() throws Exception {
-    System.out.println(generatorBeanService.handle("t_fanpai_record"));
+    System.out.println(generatorBeanService.handle("t_user_integral_address"));
   }
 
 

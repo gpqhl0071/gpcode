@@ -44,7 +44,7 @@ public class TableServiceTest {
   @Test
   public void testGeneratorJDBCTemplate() throws Exception {
 
-    String str = tableService.generatorJDBCTemplate("t_fanpai_record");
+    String str = tableService.generatorJDBCTemplate("t_user_integral_address");
     System.out.println(str);
   }
 
