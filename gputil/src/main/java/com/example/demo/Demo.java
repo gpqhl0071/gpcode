@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import cn.hutool.core.date.DateTime;
+import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.StrUtil;
 
@@ -13,10 +14,10 @@ import java.util.Date;
 public class Demo {
 
   public static void main(String[] args) {
-    Date d1 = DateUtil.parse("2019-05-23 15:00:01");
-    Date d2 = DateUtil.parse("2019-05-23 15:00:03");
+    Date d1 = new Date();
+    Date d2 = DateUtil.parse("2019-06-05 09:41:03");
 
-    System.out.println(d1.compareTo(d2));
+    System.out.println(DateUtil.between(d1, d2, DateUnit.SECOND));
   }
 
   public static boolean isAnniversary(Date date) {
