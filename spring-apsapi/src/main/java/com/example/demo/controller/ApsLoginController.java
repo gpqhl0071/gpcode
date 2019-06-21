@@ -30,9 +30,9 @@ public class ApsLoginController {
     jsonMap.put("clientVersionName", "1.3.3");
     jsonMap.put("verNo", "2.6");
     jsonMap.put("clientOSVersion", "4.4.4");
-    jsonMap.put("clientVersionCode", 16);
+    jsonMap.put("clientVersionCode", "16");
     jsonMap.put("clientModel", "HM NOTE 1LTE");
-    jsonMap.put("clientPlatform", 2);
+    jsonMap.put("clientPlatform", "2");
 
     Enumeration enumeration = request.getParameterNames();
     Map<String, Object> modelMap = new HashMap<>();

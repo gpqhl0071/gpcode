@@ -24,4 +24,15 @@ public class TableDao {
     sql.append(" WHERE c.TABLE_NAME = ?");
     return jdbcTemplate.queryForList(sql.toString(), new Object[]{tableName});
   }
+
+  public List<Map<String, Object>> get(){
+    StringBuffer sql = new StringBuffer();
+    sql.append(" SELECT * FROM t_withdraw WHERE");
+    sql.append(" apply_time > '2019-05-22 00:00:00'");
+    sql.append(" AND apply_time < '2019-06-22 00:00:00'");
+    sql.append(" AND state = 5");
+    sql.append(" ORDER BY apply_time");
+
+    return jdbcTemplate.queryForList(sql.toString(), new Object[]{});
+  }
 }

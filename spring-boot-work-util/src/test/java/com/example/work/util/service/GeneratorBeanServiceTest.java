@@ -36,7 +36,7 @@ public class GeneratorBeanServiceTest {
    */
   @Test
   public void testHandle() throws Exception {
-    System.out.println(generatorBeanService.handle("t_user_integral_address"));
+    System.out.println(generatorBeanService.handle("t_trade_detail_append"));
   }
 
 
