@@ -22,6 +22,8 @@ public class MySqlToJavaUtil {
       tableType = "String";
     } else if (dataType.equals("datetime") || dataType.equals("date")) {
       tableType = "Timestamp";
+    } else if (dataType.equals("double")) {
+      tableType = "Double";
     } else {
       System.out.println("类型未匹配到，请注意...");
     }
