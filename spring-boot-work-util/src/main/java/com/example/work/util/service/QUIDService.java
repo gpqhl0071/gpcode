@@ -203,6 +203,9 @@ public class QUIDService extends BaseService {
 
     String fieldType = getJavaFieldTytpe(dataType);
     String fieldName = getJavaFieldName(columnName);
+    if(fieldName.equals("Id")){
+      return;
+    }
 
     if (fieldType.equals("Timestamp")) {
       String par1 = "new Timestamp(" + param1 + ".get" + fieldName + "().getTime())";
