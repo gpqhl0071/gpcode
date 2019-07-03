@@ -1,10 +1,8 @@
 package com.example.demo;
 
 import cn.hutool.http.HttpRequest;
-import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import com.sun.deploy.net.HttpUtils;
 
 import java.util.HashMap;
 import java.util.Map;
