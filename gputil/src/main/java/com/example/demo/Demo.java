@@ -1,12 +1,12 @@
 package com.example.demo;
 
 
-import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 /**
  * @author gao peng
@@ -15,11 +15,27 @@ import java.util.Map;
 public class Demo {
 
   public static void main(String[] args) {
+    Date a = new Date();
 
-
-    System.out.println(DateUtil.format(DateUtil.offsetDay(new Date(), -1), "yyyy-MM-dd 00:00:00"));
-    System.out.println(DateUtil.format(new Date(), "yyyy-MM-dd 00:00:00"));
-
+    String[] strs = new String[]{"123","456"};
+    List<String> list = CollectionUtil.toList(strs);
+    for (String str : list){
+      System.out.println(str);
+    }
   }
 
 }
+
+class DemoVo {
+
+  private int count;
+
+  public int getCount() {
+    return count;
+  }
+
+  public void setCount(int count) {
+    this.count = count;
+  }
+}
+
