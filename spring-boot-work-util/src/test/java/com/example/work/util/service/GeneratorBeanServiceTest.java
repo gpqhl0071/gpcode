@@ -36,7 +36,7 @@ public class GeneratorBeanServiceTest {
    */
   @Test
   public void testHandle() throws Exception {
-    System.out.println(generatorBeanService.handle("t_trade_detail_append"));
+    System.out.println(generatorBeanService.handle("t_fund_flow_statistics"));
   }
 
 

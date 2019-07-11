@@ -2,9 +2,14 @@ package com.example.demo;
 
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.convert.Convert;
+import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.NumberUtil;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Date;
 import java.util.List;
 
@@ -15,13 +20,10 @@ import java.util.List;
 public class Demo {
 
   public static void main(String[] args) {
-    Date a = new Date();
 
-    String[] strs = new String[]{"123","456"};
-    List<String> list = CollectionUtil.toList(strs);
-    for (String str : list){
-      System.out.println(str);
-    }
+    Date d = DateUtil.offsetDay(new Date(), -1);
+
+    System.out.println(DateUtil.format(d, DatePattern.NORM_DATETIME_FORMAT));
   }
 
 }
