@@ -21,9 +21,10 @@ public class Demo {
 
   public static void main(String[] args) {
 
-    Date d = DateUtil.offsetDay(new Date(), -1);
 
-    System.out.println(DateUtil.format(d, DatePattern.NORM_DATETIME_FORMAT));
+    System.out.println(NumberUtil.isInteger("1.11"));
+    System.out.println(NumberUtil.isInteger("1.00"));
+    System.out.println(NumberUtil.isInteger("1"));
   }
 
 }
