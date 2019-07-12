@@ -25,7 +25,7 @@ import javax.crypto.spec.SecretKeySpec;
 @Component
 public class ApsSignTask {
 
-  private final String apsUrl = "";
+  private final String apsUrl = "https://aps.1001.co/";
 
   int count = 0;
 
