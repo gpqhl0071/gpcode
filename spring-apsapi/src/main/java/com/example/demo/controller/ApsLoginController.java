@@ -3,18 +3,20 @@ package com.example.demo.controller;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
+
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.security.Key;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.security.Key;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.Map;
 
 @SuppressWarnings("all")
 @RestController()
@@ -23,7 +25,19 @@ public class ApsLoginController {
 
   @RequestMapping(produces = "application/json;charset=UTF-8")
   public String apsLogin(HttpServletResponse response,
-                         HttpServletRequest request) throws Exception {
+      HttpServletRequest request) throws Exception {
+
+    String env = request.getParameter("env");
+    String address = "https://testaps.1001.co/";
+
+    if ("local".equals(env)) {
+      address = "https://192.168.9.10:8081/";
+    } else if ("test".equals(env)) {
+      address = "https://testaps.1001.co/";
+    } else if ("pro".equals(env)) {
+      address = "https://testapspro.1001.co/";
+    } else if ("online".equals(env)) {
+    }
 
     Map jsonMap = new HashMap();
 
@@ -49,7 +63,7 @@ public class ApsLoginController {
 
 //    String result = HttpUtil.post("https://testaps.1001.co/" + url + RandomUtil.randomNumbers(10), map);
 
-    String result = HttpUtil.post("https://testaps.1001.co/" + url + RandomUtil.randomNumbers(10), map);
+    String result = HttpUtil.post(address + url + RandomUtil.randomNumbers(10), map);
 
     result = decrypt(result, "SCpqJmtEdSZNNjd4I2Ukcg==");
 
