@@ -1,6 +1,6 @@
 @echo off
 
-
+SETLOCAL
 rem if "%1"=="" goto end
 
 SET /P comm=Please enter the submitted comment :
@@ -19,3 +19,5 @@ git status
 
 :end
 echo good bye
+
+ENDLOCAL
