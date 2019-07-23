@@ -5,6 +5,8 @@ rem if "%1"=="" goto end
 
 SET /P comm=Please enter the submitted comment :
 
+if "%comm%"=="" goto end
+
 rem echo =========================git pull=============================
 rem git pull
 echo "%comm%"
