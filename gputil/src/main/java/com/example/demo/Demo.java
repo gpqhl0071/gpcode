@@ -1,18 +1,6 @@
 package com.example.demo;
 
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.convert.Convert;
-import cn.hutool.core.date.DatePattern;
-import cn.hutool.core.date.DateUnit;
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.util.NumberUtil;
-
-import java.math.BigDecimal;
-import java.math.RoundingMode;
-import java.util.Date;
-import java.util.List;
-
 /**
  * @author gao peng
  * @date 2019/5/14 15:37
@@ -21,10 +9,12 @@ public class Demo {
 
   public static void main(String[] args) {
 
-
-    System.out.println(NumberUtil.isInteger("1.11"));
-    System.out.println(NumberUtil.isInteger("1.00"));
-    System.out.println(NumberUtil.isInteger("1"));
+    String amount = "12045";
+    if (amount.length() >= 3) {
+      System.out.println("1:" + amount.substring(amount.length()-3, amount.length()-2));
+    } else {
+      System.out.println("2:" + amount.length());
+    }
   }
 
 }
@@ -41,4 +31,8 @@ class DemoVo {
     this.count = count;
   }
 }
+
+
+
+
 
