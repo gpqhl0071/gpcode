@@ -10,11 +10,8 @@ if "%comm%"=="" goto end
 
 
 echo "%comm%"
-echo =========================git checkout=============================
 git checkout "%comm%"
-echo =========================git pull=============================
 git pull
-echo =========================git status=============================
 git status
 
 :end
