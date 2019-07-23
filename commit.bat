@@ -7,7 +7,7 @@ SET /P comm=comment :
 
 rem echo =========================git pull=============================
 rem git pull
-echo comm
+echo "%comm%"
 echo =========================git commit=============================
 git commit -am "%comm%"
 echo =========================git push=============================
