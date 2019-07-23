@@ -17,5 +17,6 @@ git push
 echo =========================git status=============================
 git status
 
+comm = ""
 :end
 echo good bye
