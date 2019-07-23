@@ -13,10 +13,10 @@ echo "%comm%"
 echo =========================git commit=============================
 git commit -am "%comm%"
 echo =========================git push=============================
-git push
+rem git push
 echo =========================git status=============================
-git status
+rem git status
 
-comm = ""
+set comm = ""
 :end
 echo good bye
