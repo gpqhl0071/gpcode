@@ -1,6 +1,6 @@
 @echo off
 
-if "%1"=="" echo ==============please write comment=====================
+if "%1"=="" goto end
 
 echo =========================git pull=============================
 git pull
@@ -11,3 +11,6 @@ echo =========================git push=============================
 git push
 echo =========================git status=============================
 git status
+
+:end
+echo good bye
