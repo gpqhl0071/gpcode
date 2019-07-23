@@ -2,6 +2,7 @@
 
 rem if "%1"=="" goto end
 
+set comm =
 echo "%comm%"
 SET /P comm=Please enter the submitted comment :
 
@@ -17,6 +18,5 @@ rem git push
 echo =========================git status=============================
 rem git status
 
-set comm =
 :end
 echo good bye
