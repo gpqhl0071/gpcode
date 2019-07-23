@@ -1,13 +1,15 @@
 @echo off
 
 
-if "%1"=="" goto end
+rem if "%1"=="" goto end
+
+SET /P comm=comment :
 
 rem echo =========================git pull=============================
 rem git pull
-echo %1
+echo comm
 echo =========================git commit=============================
-git commit -am %1
+git commit -am "%comm%"
 echo =========================git push=============================
 git push
 echo =========================git status=============================
