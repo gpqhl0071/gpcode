@@ -18,5 +18,6 @@ echo =========================git status=============================
 rem git status
 
 set comm = ""
+
 :end
 echo good bye
