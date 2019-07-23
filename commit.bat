@@ -3,7 +3,7 @@
 
 rem if "%1"=="" goto end
 
-SET /P comm=comment :
+SET /P comm=Please enter the submitted comment :
 
 rem echo =========================git pull=============================
 rem git pull
