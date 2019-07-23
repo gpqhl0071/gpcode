@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,5 +37,21 @@ public class GenVersionController {
         "`status`) VALUES ('iOS', 1, 'v" + versionName + "', " + versionCode + ", 1);";
 
     response.getOutputStream().write(sql.getBytes());
+  }
+
+
+  @RequestMapping(value = "/test")
+  public ModelAndView test(ModelAndView mv, HttpServletResponse response,
+      HttpServletRequest request) {
+    mv.setViewName("/index");
+
+    String versionName = request.getParameter("version_name");
+    String versionCode = request.getParameter("version_code");
+
+    String sql = "INSERT INTO `t_mobile_version` (`platform_name`, `platform_type`, `version_name`, `version_code`, " +
+        "`status`) VALUES ('iOS', 1, 'v" + versionName + "', " + versionCode + ", 1);";
+
+    mv.addObject("sql", sql);
+    return mv;
   }
 }
