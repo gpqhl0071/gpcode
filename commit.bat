@@ -1,4 +1,7 @@
 @echo off
+
+if "%1"=="" echo ==============please write comment=====================
+
 echo =========================git pull=============================
 git pull
 echo %1
