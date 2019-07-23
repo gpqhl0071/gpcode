@@ -17,7 +17,7 @@ rem git push
 echo =========================git status=============================
 rem git status
 
-set comm = ""
+set comm =
 
 :end
 echo good bye
