@@ -1,6 +1,13 @@
 package com.example.demo;
 
 
+import cn.hutool.core.date.DateUtil;
+import cn.hutool.json.JSONUtil;
+
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author gao peng
  * @date 2019/5/14 15:37
@@ -8,14 +15,9 @@ package com.example.demo;
 public class Demo {
 
   public static void main(String[] args) {
-
-    String amount = "12045";
-    if (amount.length() >= 3) {
-      System.out.println("1:" + amount.substring(amount.length()-3, amount.length()-2));
-    } else {
-      System.out.println("2:" + amount.length());
-    }
+    System.out.println(JSONUtil.toJsonStr(new HashMap()));
   }
+
 
 }
 

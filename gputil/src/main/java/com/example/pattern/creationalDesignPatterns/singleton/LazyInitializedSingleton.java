@@ -1,4 +1,4 @@
-package com.example.pattern.singleton;
+package com.example.pattern.creationalDesignPatterns.singleton;
 
 /**
  * <p>懒汉式，使用的时候，才去创建实例，但是在高并发的场景，容易出现创建2个实例的情况，线程是不安全的</p>

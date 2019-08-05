@@ -1,4 +1,4 @@
-package com.example.pattern.singleton;
+package com.example.pattern.creationalDesignPatterns.singleton;
 
 /**
  * <p>Static block initialization</p>

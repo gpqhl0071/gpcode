@@ -1,4 +1,4 @@
-package com.example.pattern.singleton;
+package com.example.pattern.creationalDesignPatterns.singleton;
 
 /**
  * <p>项目启动时候，不初始化实例，当调用SingletonHelper.INSTANCE的时候，才实例化到内存中</p>
