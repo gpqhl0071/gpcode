@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,12 +15,12 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(value = "/demoController")
 public class DemoController {
 
-  @RequestMapping(value = "/testNullParam", produces = "application/json;charset=UTF-8")
+  @RequestMapping(value = "/json", produces = "application/json;charset=UTF-8")
   public String testNullParam(HttpServletResponse response,
-      HttpServletRequest request) throws Exception {
-    String name = request.getParameter("name");
-    System.out.println(name);
+      HttpServletRequest request,
+      @RequestBody DemoVo demoVo) throws Exception {
+    System.out.println(demoVo.toString());
 
-    return name;
+    return "success";
   }
 }
