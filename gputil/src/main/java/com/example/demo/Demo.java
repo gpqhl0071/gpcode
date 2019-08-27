@@ -18,7 +18,6 @@ public class Demo {
 
   public static void main(String[] args) throws Exception {
 
-
     ArrayList<String> list1 = CollectionUtil.newArrayList("a", "x");
     ArrayList<String> list2 = CollectionUtil.newArrayList("c", "d");
 
