@@ -1,8 +1,12 @@
 package com.example.demo;
 
 
+import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.StrUtil;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -14,9 +18,13 @@ public class Demo {
 
   public static void main(String[] args) throws Exception {
 
-    String str = "a,b,v,c,e,";
-    System.out.println(StrUtil.subBefore(str, ",", true));
 
+    ArrayList<String> list1 = CollectionUtil.newArrayList("a", "x");
+    ArrayList<String> list2 = CollectionUtil.newArrayList("c", "d");
+
+    Collection<String> union = CollectionUtil.intersection(list1, list2);
+
+    System.out.println(union.size());
 
   }
 }
