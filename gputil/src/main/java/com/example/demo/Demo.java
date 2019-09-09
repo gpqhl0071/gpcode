@@ -1,162 +1,96 @@
 package com.example.demo;
 
 
-import cn.hutool.core.collection.CollectionUtil;
-import cn.hutool.core.net.NetUtil;
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.convert.Convert;
+import cn.hutool.core.util.HexUtil;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
 
 /**
  * @author gao peng
  * @date 2019/5/14 15:37
  */
 public class Demo {
+  private static String str = "{\"AgentOrgCode\":\"\",\"MerCode\":\"103473254110001\",\"ProductId\":\"07\"," +
+      "\"OrgAccType\":\"02\",\"TxnOrderId\":\"t1565147642\",\"TxnTime\":\"20190807031402\",\"TxnAmt\":\"100\",\"CurrType\":\"01\",\"Cnaps\":\"310581000017\",\"ProvinceName\":\"广东省\",\"CityName\":\"广州市\",\"BankName\":\"上海浦东发展银行\",\"SubBranchName\":\"上海浦东发展银行股份有限公司广州分行\",\"AccType\":\"02\",\"AccNo\":\"6217921002577735\",\"AccName\":\"张小明\",\"IdType\":\"01\",\"IdNo\":\"441423199112276416\",\"MobileNo\":\"13427528469\",\"NotifyUrl\":\"\",\"SignMac\":\"10257B63EEC778D5908927FAB99E29A758237109\"}";
 
   public static void main(String[] args) throws Exception {
 
-    ArrayList<String> list1 = CollectionUtil.newArrayList("a", "x");
-    ArrayList<String> list2 = CollectionUtil.newArrayList("c", "d");
+    String hostname = "192.168.9.10";
+    int port = 9600;
 
-    Collection<String> union = CollectionUtil.intersection(list1, list2);
+    String strHex = HexUtil.encodeHexStr(str);
 
-    System.out.println(union.size());
+    try (Socket socket = new Socket(hostname, port)) {
 
-  }
-}
+      socket.setSoTimeout(10000);
 
-class DemoVo {
+      InputStream input = socket.getInputStream();
 
-  private int id;
-  private String channel;
+      OutputStream output = socket.getOutputStream();
+      PrintWriter writer = new PrintWriter(output, false);
 
-  private long singleAmountBegin;
-  private String singleAmountEnd;
-  private String dayMaxAmount;
-  private String level;
-  private String remark;
-  private Date createTime;
+      BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
-  private List<WithdrawUpdateRoutingTimeVO> timesVO;
+      String line = "";
 
-  @Override
-  public String toString() {
-    return "WithdrawUpdateRoutingVO{" +
-        "id='" + id + '\'' +
-        ", channel='" + channel + '\'' +
-        ", singleAmountBegin='" + singleAmountBegin + '\'' +
-        ", singleAmountEnd='" + singleAmountEnd + '\'' +
-        ", dayMaxAmount='" + dayMaxAmount + '\'' +
-        ", level='" + level + '\'' +
-        ", remark='" + remark + '\'' +
-        ", timesVO=" + timesVO +
-        '}';
-  }
 
-  public Date getCreateTime() {
-    return createTime;
-  }
+      String hex = HexUtil.toHex(11);
+      if (hex.length() == 1) {
+        hex = "0" + hex;
+      }
+//      writer.println(hex.toUpperCase()); // 2个占位符 0不全
 
-  public void setCreateTime(Date createTime) {
-    this.createTime = createTime;
-  }
+      //======================2
+      StringBuffer jsonLenStr = new StringBuffer();
+      String jsonLenHex = HexUtil.toHex(Convert.toInt(strHex.length()));
+      if (jsonLenHex.length() < 8) {
+        int num = 8 - jsonLenHex.length();
+        for (int i = 0; i < num; i++) {
+          jsonLenStr.append("0");
+        }
+      }
+      jsonLenStr.append(jsonLenHex);
+//      writer.println(jsonLenStr.toString().toUpperCase()); // 8个占位符 0不全
+      //======================3
+      StringBuffer commandStr = new StringBuffer();
+      String commandHex = HexUtil.toHex(1000);
+      if (commandHex.length() < 8) {
+        int num = 8 - commandHex.length();
+        for (int i = 0; i < num; i++) {
+          commandStr.append("0");
+        }
+      }
+      commandStr.append(commandHex);
+//      writer.println(commandStr.toString().toUpperCase()); // 8个占位符 0不全
+      //======================4
+//      writer.println(strHex.toUpperCase());
 
-  public int getId() {
-    return id;
-  }
+      writer.println((hex + jsonLenStr.toString() + commandStr.toString() + strHex).toUpperCase());
 
-  public void setId(int id) {
-    this.id = id;
-  }
+      System.out.println((hex + jsonLenStr.toString() + commandStr.toString() + strHex).toUpperCase());
 
-  public String getChannel() {
-    return channel;
-  }
 
-  public void setChannel(String channel) {
-    this.channel = channel;
-  }
+      line = reader.readLine();
+      System.out.println("return:" + line);
 
-  public long getSingleAmountBegin() {
-    return singleAmountBegin;
-  }
+    } catch (UnknownHostException ex) {
 
-  public void setSingleAmountBegin(long singleAmountBegin) {
-    this.singleAmountBegin = singleAmountBegin;
+      System.out.println("Server not found: " + ex.getMessage());
+
+    } catch (IOException ex) {
+
+      System.out.println("I/O error: " + ex.getMessage());
+    }
   }
 
-  public String getSingleAmountEnd() {
-    return singleAmountEnd;
-  }
-
-  public void setSingleAmountEnd(String singleAmountEnd) {
-    this.singleAmountEnd = singleAmountEnd;
-  }
-
-  public String getDayMaxAmount() {
-    return dayMaxAmount;
-  }
-
-  public void setDayMaxAmount(String dayMaxAmount) {
-    this.dayMaxAmount = dayMaxAmount;
-  }
-
-  public String getLevel() {
-    return level;
-  }
-
-  public void setLevel(String level) {
-    this.level = level;
-  }
-
-  public String getRemark() {
-    return remark;
-  }
-
-  public void setRemark(String remark) {
-    this.remark = remark;
-  }
-
-  public List<WithdrawUpdateRoutingTimeVO> getTimesVO() {
-    return timesVO;
-  }
-
-  public void setTimesVO(List<WithdrawUpdateRoutingTimeVO> timesVO) {
-    this.timesVO = timesVO;
-  }
-}
-
-class WithdrawUpdateRoutingTimeVO {
-  private String startTime;
-  private String endTime;
-  private List<Integer> weeks;
-
-  public String getStartTime() {
-    return startTime;
-  }
-
-  public void setStartTime(String startTime) {
-    this.startTime = startTime;
-  }
-
-  public String getEndTime() {
-    return endTime;
-  }
-
-  public void setEndTime(String endTime) {
-    this.endTime = endTime;
-  }
-
-  public List<Integer> getWeeks() {
-    return weeks;
-  }
-
-  public void setWeeks(List<Integer> weeks) {
-    this.weeks = weeks;
-  }
 }
 
 

@@ -28,14 +28,14 @@ public class ApsLoginController {
       HttpServletRequest request) throws Exception {
 
     String env = request.getParameter("env");
-    String address = "https://testaps.1001.co/";
+    String address = "";
 
     if ("local".equals(env)) {
-      address = "https://192.168.9.10:8081/";
+      address = "http://192.168.9.10:8081/";
     } else if ("test".equals(env)) {
-      address = "https://testaps.1001.co/";
+      address = "";
     } else if ("pro".equals(env)) {
-      address = "https://testapspro.1001.co/";
+      address = "";
     } else if ("online".equals(env)) {
     }
 
