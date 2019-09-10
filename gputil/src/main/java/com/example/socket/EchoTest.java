@@ -20,7 +20,7 @@ public class EchoTest {
 
       int c;
       String responseLine;
-      String demoStr = DemoSTR.getStr();
+//      String demoStr = DemoSTR.getStr();
 
 //      os.write(demoStr.getBytes());
 //

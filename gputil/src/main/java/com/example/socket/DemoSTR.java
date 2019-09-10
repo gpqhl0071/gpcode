@@ -9,18 +9,21 @@ import cn.hutool.core.util.HexUtil;
  */
 public class DemoSTR {
 
-  private static String str = "{\"AgentOrgCode\":\"\",\"MerCode\":\"103473254110001\",\"ProductId\":\"07\"," +
-      "\"OrgAccType\":\"02\",\"TxnOrderId\":\"t1565147642\",\"TxnTime\":\"20190807031402\",\"TxnAmt\":\"100\",\"CurrType\":\"01\",\"Cnaps\":\"310581000017\",\"ProvinceName\":\"广东省\",\"CityName\":\"广州市\",\"BankName\":\"上海浦东发展银行\",\"SubBranchName\":\"上海浦东发展银行股份有限公司广州分行\",\"AccType\":\"02\",\"AccNo\":\"6217921002577735\",\"AccName\":\"张小明\",\"IdType\":\"01\",\"IdNo\":\"441423199112276416\",\"MobileNo\":\"13427528469\",\"NotifyUrl\":\"\",\"SignMac\":\"10257B63EEC778D5908927FAB99E29A758237109\"}";
+  private static String str = "{\"BankName\":\"\",\"AccNo\":\"\",\"SignMac\":\"\",\"AccType\":\"\",\"BatchNo\":\"\",\"ProductId\":\"\",\"OrgAccType\":\"\",\"ProvinceName\":\"\",\"NotifyUrl\":\"\",\"Cnaps\":\"\",\"MobileNo\":\"\",\"SerialNo\":\"\",\"SubBranchName\":\"\",\"AgentOrgCode\":\"\",\"CityName\":\"\",\"TxnOrderId\":\"\",\"IdType\":\"\",\"AccName\":\"\",\"CardNo\":\"\",\"TxnTime\":\"\",\"CurrType\":\"\",\"MerCode\":\"\",\"TermCode\":\"\",\"TxnAmt\":\"\",\"IdNo\":\"\"}";
 
-  public static String getStr() {
-    String strHex = HexUtil.encodeHexStr(str);
+  private static String strHex = HexUtil.encodeHexStr(str);
+
+  public static String getStr1() {
 
     String hex = HexUtil.toHex(11);
     if (hex.length() == 1) {
       hex = "0" + hex;
     }
+    return hex.toUpperCase();
+  }
 
-    //======================2
+  public static String getStr2() {
+
     StringBuffer jsonLenStr = new StringBuffer();
     String jsonLenHex = HexUtil.toHex(Convert.toInt(strHex.length()));
     if (jsonLenHex.length() < 8) {
@@ -30,7 +33,11 @@ public class DemoSTR {
       }
     }
     jsonLenStr.append(jsonLenHex);
-    //======================3
+
+    return jsonLenStr.toString().toUpperCase();
+  }
+
+  public static String getStr3() {
     StringBuffer commandStr = new StringBuffer();
     String commandHex = HexUtil.toHex(3002);
     if (commandHex.length() < 8) {
@@ -40,10 +47,8 @@ public class DemoSTR {
       }
     }
     commandStr.append(commandHex);
-    //======================4
-//      writer.println(strHex.toUpperCase());
+    return commandStr.toString().toUpperCase();
 
-    return ((hex + jsonLenStr.toString() + commandStr.toString()).toUpperCase());
   }
 
   public static String getJsonStr() {
