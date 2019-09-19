@@ -33,7 +33,7 @@ public class ApsLoginController {
     if ("local".equals(env)) {
       address = "http://192.168.9.10:8081/";
     } else if ("test".equals(env)) {
-      address = "";
+      address = "https://testaps.1001.co/";
     } else if ("pro".equals(env)) {
       address = "";
     } else if ("online".equals(env)) {

@@ -18,8 +18,9 @@ public class Test4 {
   public static void main(String[] args) throws Exception {
 
     SocketChannel socketChannel = SocketChannel.open();
-    socketChannel.connect(new InetSocketAddress("115.28.214.108", 9600));
-//    socketChannel.connect(new InetSocketAddress("192.168.9.10", 9600));
+//    socketChannel.connect(new InetSocketAddress("115.28.214.108", 9600));
+    socketChannel.connect(new InetSocketAddress("192.168.9.10", 9600));
+
 
     List<String> list = new LinkedList<String>();
     list.add(DemoSTR.getStr1() + DemoSTR.getStr2() + DemoSTR.getStr3());
