@@ -6,6 +6,8 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.Mode;
 import cn.hutool.crypto.Padding;
 import cn.hutool.crypto.symmetric.AES;
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
 
 /**
  * @author gao peng
@@ -20,15 +22,16 @@ public class Demo {
 
   public static void main(String[] args) throws Exception {
 
-    String str = "{\"ordernumber\":\"2017092300000006\",\"body\":\"支付测试\",\"amount\":\"1\",\"paymenttype\":\"1\",\"ordertype\":\"001\",\"bankno\":\"103100000026\"}";
+    String result = "{\"orderId\":\"101909205510227_20190920091359\",\"preBind\":\"succ\"}";
 
-    AES aes = new AES(Mode.CBC, Padding.PKCS5Padding, key.getBytes(), OFFSET.getBytes());
-    byte[] b = aes.encrypt(str);
+    String preBind = JSONUtil.parseObj(result).getStr("preBind");
+    String bindOrderId = JSONUtil.parseObj(result).getStr("orderId");
+    String secondPay = JSONUtil.parseObj(result).getStr("secondPay", "");
 
-    System.out.println(HexUtil.encodeHex(b));
+    System.out.println(preBind);
+    System.out.println(bindOrderId);
+    System.out.println(secondPay);
 
-    // java 的zero填充模式实现
-    // https://my.oschina.net/Jacker/blog/86383
   }
 
 }
