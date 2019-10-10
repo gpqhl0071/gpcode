@@ -1,13 +1,11 @@
 package com.example.demo;
 
 
+import cn.hutool.core.codec.Base64;
+import cn.hutool.core.date.DatePattern;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.HexUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.crypto.Mode;
-import cn.hutool.crypto.Padding;
-import cn.hutool.crypto.symmetric.AES;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
 
 /**
  * @author gao peng
@@ -22,15 +20,9 @@ public class Demo {
 
   public static void main(String[] args) throws Exception {
 
-    String result = "{\"orderId\":\"101909205510227_20190920091359\",\"preBind\":\"succ\"}";
+    String str = "2019-10-10 00:00:00";
 
-    String preBind = JSONUtil.parseObj(result).getStr("preBind");
-    String bindOrderId = JSONUtil.parseObj(result).getStr("orderId");
-    String secondPay = JSONUtil.parseObj(result).getStr("secondPay", "");
-
-    System.out.println(preBind);
-    System.out.println(bindOrderId);
-    System.out.println(secondPay);
+    System.out.println(StrUtil.sub(str, 0, 10));
 
   }
 
