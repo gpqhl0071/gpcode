@@ -48,6 +48,9 @@ public class StaticJWTController extends BaseController {
         return new JwtResponse(jws);
     }
 
+    /**
+     * 约定参数内容，ISSUE = Stormpath 、 hasMotorcycle = true ,必须这样要求参数，否则请求失败 ，
+     */
     @RequestMapping(value = "/parser-enforce", method = GET)
     public JwtResponse parserEnforce(@RequestParam String jwt) throws UnsupportedEncodingException {
         Jws<Claims> jws = Jwts.parser()

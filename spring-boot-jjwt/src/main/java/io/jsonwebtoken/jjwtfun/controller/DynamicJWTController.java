@@ -25,6 +25,9 @@ public class DynamicJWTController extends BaseController {
     @Autowired
     SecretService secretService;
 
+    /**
+     * 原生的方式，动态获取jwt token, 请求参数为json 格式
+     */
     @RequestMapping(value = "/dynamic-builder-general", method = POST)
     public JwtResponse dynamicBuilderGeneric(@RequestBody Map<String, Object> claims) throws UnsupportedEncodingException {
         String jws = Jwts.builder()

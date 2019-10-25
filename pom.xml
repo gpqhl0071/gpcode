@@ -25,6 +25,7 @@
         <module>spring-boot-work-util</module>
         <module>java-dynamic-proxy</module>
         <module>spring-boot-redis</module>
+        <module>spring-boot-jjwt</module>
 
     </modules>
 </project>

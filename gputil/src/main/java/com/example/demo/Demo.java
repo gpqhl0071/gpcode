@@ -1,11 +1,10 @@
 package com.example.demo;
 
 
-import cn.hutool.core.codec.Base64;
-import cn.hutool.core.date.DatePattern;
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.util.HexUtil;
-import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.collection.CollectionUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author gao peng
@@ -13,20 +12,23 @@ import cn.hutool.core.util.StrUtil;
  */
 public class Demo {
 
-  private static String key = "0C3C2748E17622F42CC658F01645C5B3";
-  private static final String OFFSET = "0000000000000000";
+  public static void main(String args[]) {
+    List list = new ArrayList<>();
+    list.add(1);
+    list.add(2);
+    list.add(3);
+    list.add(4);
+    list.add(5);
+    list.add(6);
+    list.add(7);
+    list.add(8);
 
-  private static String mer_code = "103473055410001";
 
-  public static void main(String[] args) throws Exception {
-
-    String str = "2019-10-10 00:00:00";
-
-    System.out.println(StrUtil.sub(str, 0, 10));
+    System.out.println(CollectionUtil.sub(list, 0, 5));
 
   }
-
 }
+
 
 
 
