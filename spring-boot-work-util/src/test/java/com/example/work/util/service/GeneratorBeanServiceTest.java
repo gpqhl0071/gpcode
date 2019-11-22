@@ -1,6 +1,7 @@
 package test.com.example.work.util.service;
 
 import com.example.SpringBootWorkUtilApplication;
+import com.example.work.util.service.AreaService;
 import com.example.work.util.service.GeneratorBeanService;
 import org.junit.Test;
 import org.junit.Before;
@@ -22,6 +23,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class GeneratorBeanServiceTest {
   @Autowired
   private GeneratorBeanService generatorBeanService;
+  @Autowired
+  private AreaService areaService;
 
   @Before
   public void before() throws Exception {
@@ -36,8 +39,10 @@ public class GeneratorBeanServiceTest {
    */
   @Test
   public void testHandle() throws Exception {
-    System.out.println(generatorBeanService.handle("t_fund_flow_statistics"));
+    areaService.gen();
+//    System.out.println(generatorBeanService.handle("t_fund_flow_statistics"));
   }
+
 
 
 } 
