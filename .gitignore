@@ -23,5 +23,7 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+*/target
 
 */application-prod.properties
+
