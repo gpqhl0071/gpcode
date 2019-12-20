@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+    <!-- 开启注解模式 -->
+    <!--    <context:annotation-config/>-->
+
+
+    <aop:config>
+
+        <aop:pointcut id="loggingOperation" expression="execution(* gp.xml.EmployeeManager.*(..))"/>
+
+        <aop:pointcut id="transactionOperation" expression="execution(* gp.xml.EmployeeManager.getEmployeeById(..))"/>
+
+        <aop:aspect id="loggingAspect" ref="loggingAspectBean">
+            <aop:before method="logBefore" pointcut-ref="loggingOperation"/>
+            <aop:after method="logAfter" pointcut-ref="loggingOperation"/>
+        </aop:aspect>
+
+        <aop:aspect id="transactionAspect" ref="transactionAspectBean">
+            <aop:before method="getEmployeeById" pointcut-ref="transactionOperation"/>
+        </aop:aspect>
+
+    </aop:config>
+
+    <bean id="loggingAspectBean" class="gp.xml.EmployeeCRUDLoggingAspect"/>
+    <bean id="transactionAspectBean" class="gp.xml.EmployeeCRUDTransactionAspect"/>
+
+    <bean id="employeeManager" class="gp.xml.EmployeeManagerImpl" />
+</beans>
