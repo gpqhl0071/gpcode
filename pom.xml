@@ -27,6 +27,7 @@
         <module>spring-boot-redis</module>
         <module>spring-boot-jjwt</module>
         <module>java-rmi</module>
+        <module>spring-aop</module>
 
     </modules>
 </project>
